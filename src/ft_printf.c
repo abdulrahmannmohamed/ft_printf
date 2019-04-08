@@ -2,9 +2,9 @@
 #include "ft_printf.h"
 
 
-void call_handler(va_list list, t_block *block)
+int call_handler(va_list list, t_block *block)
 {
-	void (*func[11])(va_list);
+	int (*func[11])(va_list);
 
 	func[0] = handle_c;
 	func[1] = handle_s;
@@ -18,7 +18,7 @@ void call_handler(va_list list, t_block *block)
 	// func[9] = handle_f;
 	// func[10] = handle_%;
 
-	func[block->specifier](list);
+	return (func[block->specifier](list));
 }
 
 void parser(va_list list, const char *format, t_block *block)
@@ -56,7 +56,7 @@ int ft_printf(const char *format, ...)
 			parser(list, format, &block);
 			if (block.valid)
 			{
-				call_handler(list, &block);
+				count += call_handler(list, &block);
 				format++;
 			}
 				// call_handler(&block, ap)

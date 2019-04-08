@@ -2,11 +2,12 @@
 #include <stdio.h>
 int main(void)
 {
-	unsigned int b = 123123123;
-	unsigned int a = (unsigned int)b;
-	int c = a;
-
-	ft_printf("b=%x", b);
+	int b = -123;
+	int* a = &b;
+	// int c = a;
+	int x,y;
+	x = ft_printf("b=%u", b);
 	// ft_printf("b=%u", b);
-	printf("\nb=%x", b);
+	y = printf("b=%u", b);
+	printf("\nmyprintf = %d\nrealprintf = %d", x, y);
 }

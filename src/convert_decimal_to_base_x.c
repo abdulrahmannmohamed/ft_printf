@@ -11,16 +11,27 @@ int places_with_base_x(unsigned long long x, int base)
 	}
 	return (count);
 }
-char *convert_decimal_to_base_x(unsigned long long n, int base, char c)
+// char *convert_decimal_to_base_x(unsigned long long n, int num_places, int base, char c)
+// {
+// 	// int num_places = places_with_base_x(n, base);
+// 	char *s;
+// 	if (!(s = (char *)ft_memalloc(num_places + 1)))
+// 		return (NULL);
+// 	while (n)
+// 	{
+// 		s[--num_places] = (n % base > 9) ? (n % base - 10 + c) : (n % base + '0');
+// 		n /= base;
+// 	}
+// 	return (s);
+// }
+
+void print_in_base_x(unsigned long long n, int base, char c)
 {
-	int num_places = places_with_base_x(n, base);
-	char *s;
-	if (!(s = (char *)ft_memalloc(num_places + 1)))
-		return (NULL);
-	while (n)
+	if (n >= (unsigned long long)base)
 	{
-		s[--num_places] = (n % base > 9) ? (n % base - 10 + c) : (n % base + '0');
-		n /= base;
+		print_in_base_x(n / base, base, c);
+		print_in_base_x(n % base, base, c);
 	}
-	return (s);
+	if (n < (unsigned long long)base)
+		ft_putchar((n % base > 9) ? (n % base - 10 + c) : (n % base + '0'));
 }
