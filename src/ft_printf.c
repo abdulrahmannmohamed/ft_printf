@@ -11,18 +11,22 @@ void call_handler(va_list list, t_block *block)
 	func[2] = handle_p;
 	func[3] = handle_d;
 	func[4] = handle_d;
-	// func[5] = handle_o;
-	// func[5] = handle_u;
-	// func[5] = handle_x;
-	// func[5] = handle_X;
-	// func[5] = handle_f;
-	// func[5] = handle_%;
+	func[5] = handle_o;
+	func[6] = handle_u;
+	func[7] = handle_x;
+	func[8] = handle_X;
+	// func[9] = handle_f;
+	// func[10] = handle_%;
 
 	func[block->specifier](list);
 }
 
 void parser(va_list list, const char *format, t_block *block)
 {
+	// parse_flag(format, block);
+	// parse_width(format, block);
+	// parse_precision(format, block);
+	// parse_len(format, block);
 	parse_specifier(list, format, block);
 }
 int put_basic(const char **format)
