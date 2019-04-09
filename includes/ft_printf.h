@@ -4,11 +4,11 @@
 # include <stdarg.h>
 # include "libft.h"
 
-#define hh 1
-#define h 2
-#define ll 3
-#define l 4
-#define L 5
+#define HH 1
+#define H 2
+#define LL 3
+#define L 4
+// #define L 5
 
 typedef struct 	s_block
 {
@@ -24,18 +24,20 @@ typedef struct 	s_block
 
 int ft_printf(const char *format, ...);
 
-int handle_c(va_list list);
-int handle_s(va_list list);
-int handle_p(va_list list);
-int handle_d(va_list list);
-int handle_o(va_list list);
-int handle_u(va_list list);
-int handle_x(va_list list);
-int handle_X(va_list list);
+int handle_c(va_list list, t_block *block);
+int handle_s(va_list list, t_block *block);
+int handle_p(va_list list, t_block *block);
+int handle_d(va_list list, t_block *block);
+int handle_o(va_list list, t_block *block);
+int handle_u(va_list list, t_block *block);
+int handle_x(va_list list, t_block *block);
+int handle_X(va_list list, t_block *block);
 
 void parse_len(const char **format, t_block *block);
 void parse_specifier(va_list list, const char **format, t_block *block);
 
+long long handle_signed_len(va_list list, t_block *block);
+long long handle_unsigned_len(va_list list, t_block *block);
 
 int convert_to_unsigned(int num, int *places);
 
