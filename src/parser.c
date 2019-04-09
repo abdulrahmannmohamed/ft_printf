@@ -19,18 +19,16 @@ void parse_specifier(va_list list, const char **format, t_block *block)
 void parse_len(const char **format, t_block *block)
 {
 	if (ft_strnstr(*format, "hh", 2))
-		block->len = hh;
+		block->len = HH;
 	else if (**format == 'h')
-		block->len = h;
+		block->len = H;
 	else if (ft_strnstr(*format, "ll", 2))
-		block->len = ll;
+		block->len = LL;
 	else if (**format == 'l')
-		block->len = l;
-	else if (**format == 'L')
 		block->len = L;
 	if (block->len)
 	{
-		if (block->len == hh || block->len == ll)
+		if (block->len == HH || block->len == LL)
 			(*format) += 2;
 		else
 			(*format) += 1;
