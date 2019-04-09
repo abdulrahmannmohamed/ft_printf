@@ -20,14 +20,15 @@ int call_handler(va_list list, t_block *block)
 
 	return (func[block->specifier](list));
 }
-
-void parser(va_list list, const char *format, t_block *block)
+#include <stdio.h>
+void parser(va_list list, const char **format, t_block *block)
 {
 	// parse_flag(format, block);
 	// parse_width(format, block);
 	// parse_precision(format, block);
-	// parse_len(format, block);
+	parse_len(format, block);
 	parse_specifier(list, format, block);
+	printf("len=%d\n", block->len);
 }
 int put_basic(const char **format)
 {
@@ -53,7 +54,7 @@ int ft_printf(const char *format, ...)
 		if (*format == '%')
 		{
 			format++;
-			parser(list, format, &block);
+			parser(list, &format, &block);
 			if (block.valid)
 			{
 				count += call_handler(list, &block);
