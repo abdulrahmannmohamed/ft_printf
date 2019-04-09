@@ -1,4 +1,5 @@
 #include "ft_printf.h"
+
 // int places_with_base_x(unsigned long long x, int base)
 // {
 // 	int count = 0;
@@ -32,7 +33,7 @@ void print_in_base_x_and_count_digits(unsigned long long n, int base, char c, in
 		print_in_base_x_and_count_digits(n / base, base, c, places);
 		print_in_base_x_and_count_digits(n % base, base, c, places);
 	}
-	if (n < (unsigned long long)base)
+	else
 	{
 		(*places)++;
 		ft_putchar((n % base > 9) ? (n % base - 10 + c) : (n % base + '0'));
