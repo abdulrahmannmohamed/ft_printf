@@ -58,7 +58,6 @@ int ft_printf(const char *format, ...)
 				count += call_handler(list, &block);
 				format++;
 			}
-				// call_handler(&block, ap)
 		}
 		else
 			count += put_basic(&format);
