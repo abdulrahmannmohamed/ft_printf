@@ -11,25 +11,27 @@ int handle_s(va_list list)
 	ft_putstr(s);
 	return(ft_strlen(s));
 }
+#include <stdio.h>
 int handle_p(va_list list)
 {
 	void *p = va_arg(list, void*);
 	write(1, "0x", 2);
 	unsigned long long n = (unsigned long long)p;
-	int places = places_with_base_x(n, 16);
-	print_in_base_x(n, 16, 'a');
+	int places = 0;
+	print_in_base_x(n, 16, 'a', &places);
 	return (places + 2);
 }
 int handle_o(va_list list)
 {
 	unsigned int num = va_arg(list, unsigned int);
-	int places = places_with_base_x(num, 8);
-	print_in_base_x(num, 8, 'a');
+	int places = 0;
+	print_in_base_x(num, 8, 'a', &places);
 	return (places);
 }
 int handle_d(va_list list)
 {
 	int num = va_arg(list, int);
-	ft_putnbr(num);
-	return (places_with_base_x(num, 10));
+	int places = 0;
+	print_in_base_x(num, 10, 'a', &places);
+	return (places);
 }

@@ -24,6 +24,6 @@ int handle_X(va_list list);
 void parse_specifier(va_list list, const char *format, t_block *block);
 
 // char *convert_decimal_to_base_x(unsigned long long n, int places, int base, char c);
-int places_with_base_x(unsigned long long x, int base);
-void print_in_base_x(unsigned long long n, int base, char c);
+// int places_with_base_x(unsigned long long x, int base);
+void print_in_base_x(unsigned long long n, int base, char c, int* places);
 #endif
