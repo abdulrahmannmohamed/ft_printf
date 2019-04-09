@@ -20,7 +20,6 @@ int call_handler(va_list list, t_block *block)
 
 	return (func[block->specifier](list));
 }
-#include <stdio.h>
 void parser(va_list list, const char **format, t_block *block)
 {
 	// parse_flag(format, block);
@@ -28,7 +27,6 @@ void parser(va_list list, const char **format, t_block *block)
 	// parse_precision(format, block);
 	parse_len(format, block);
 	parse_specifier(list, format, block);
-	printf("len=%d\n", block->len);
 }
 int put_basic(const char **format)
 {
