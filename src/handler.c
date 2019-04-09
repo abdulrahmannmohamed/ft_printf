@@ -17,20 +17,20 @@ int handle_p(va_list list)
 	write(1, "0x", 2);
 	unsigned long long n = (unsigned long long)p;
 	int places = 0;
-	print_in_base_x(n, 16, 'a', &places);
+	print_in_base_x_and_count_digits(n, 16, 'a', &places);
 	return (places + 2);
 }
 int handle_o(va_list list)
 {
 	unsigned int num = va_arg(list, unsigned int);
 	int places = 0;
-	print_in_base_x(num, 8, 'a', &places);
+	print_in_base_x_and_count_digits(num, 8, 'a', &places);
 	return (places);
 }
 int handle_d(va_list list)
 {
 	int num = va_arg(list, int);
 	int places = 0;
-	print_in_base_x(num, 10, 'a', &places);
+	print_in_base_x_and_count_digits(num, 10, 'a', &places);
 	return (places);
 }

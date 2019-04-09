@@ -25,12 +25,12 @@
 // 	return (s);
 // }
 
-void print_in_base_x(unsigned long long n, int base, char c, int* places)
+void print_in_base_x_and_count_digits(unsigned long long n, int base, char c, int* places)
 {
 	if (n >= (unsigned long long)base)
 	{
-		print_in_base_x(n / base, base, c, places);
-		print_in_base_x(n % base, base, c, places);
+		print_in_base_x_and_count_digits(n / base, base, c, places);
+		print_in_base_x_and_count_digits(n % base, base, c, places);
 	}
 	if (n < (unsigned long long)base)
 	{
