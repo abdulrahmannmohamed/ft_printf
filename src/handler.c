@@ -31,12 +31,7 @@ int handle_d(va_list list)
 {
 	int num = va_arg(list, int);
 	int places = 0;
-	if (num < 0)
-	{
-		write(1, "-", 1);
-		num *= -1;
-		places++;
-	}	
+	num = convert_to_unsigned(num, &places);
 	print_in_base_x_and_count_digits(num, 10, 'a', &places);
 	return (places);
 }
