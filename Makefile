@@ -1,6 +1,6 @@
 NAME = libftprintf.a
 FLAGS = -Wall -Werror -Wextra
-SRC := ft_printf.c convert_decimal_to_base_x.c handler.c parser.c handler_cont.c handle_d.c#utils_handle.c handlef.c \
+SRC := ft_printf.c convert_decimal_to_base_x.c handler.c parser.c handler_cont.c handler_assist.c#utils_handle.c handlef.c \
 #utils_handlef.c utils_handlef_2.c utils_handlef_3.c utils.c utils_parse.c
 SRC_DIR = ./src
 OBJECTS := $(SRC:.c=.o)
