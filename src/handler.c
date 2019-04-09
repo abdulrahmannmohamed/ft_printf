@@ -11,7 +11,6 @@ int handle_s(va_list list)
 	ft_putstr(s);
 	return(ft_strlen(s));
 }
-#include <stdio.h>
 int handle_p(va_list list)
 {
 	void *p = va_arg(list, void*);
