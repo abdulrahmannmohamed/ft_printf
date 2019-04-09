@@ -1,18 +1,6 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: jbeall <jbeall@student.42.us.org>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2018/11/14 10:09:01 by jbeall            #+#    #+#              #
-#    Updated: 2018/12/03 14:42:27 by jbeall           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 NAME = libftprintf.a
 FLAGS = -Wall -Werror -Wextra
-SRC := ft_printf.c convert_decimal_to_base_x.c handler.c parser.c handler_cont.c #utils_handle.c handlef.c \
+SRC := ft_printf.c convert_decimal_to_base_x.c handler.c parser.c handler_cont.c handle_d.c#utils_handle.c handlef.c \
 #utils_handlef.c utils_handlef_2.c utils_handlef_3.c utils.c utils_parse.c
 SRC_DIR = ./src
 OBJECTS := $(SRC:.c=.o)
