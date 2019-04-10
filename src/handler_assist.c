@@ -1,12 +1,13 @@
 #include "ft_printf.h"
 
-int convert_to_unsigned(int num, int *places)
+int convert_to_unsigned(int num, t_block *block)
 {
 	if (num < 0)
 	{
 		write(1, "-", 1);
 		num *= -1;
-		(*places)++;
+		// (*places)++;
+		block->is_neg = 1;
 	}
 	return (num);
 }
@@ -40,4 +41,13 @@ long long handle_unsigned_len(va_list list, t_block *block)
 	else
 		n = va_arg(list, unsigned int);
 	return (n);
+}
+
+void handle_prec(t_block *block, int places)
+{
+	while (places < block->prec)
+		{
+			write(1, "0", 1);
+			places++;
+		}
 }

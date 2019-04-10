@@ -1,17 +1,17 @@
 #include "ft_printf.h"
 
-// int places_with_base_x(unsigned long long x, int base)
-// {
-// 	int count = 0;
-// 	if (x == 0)
-// 		return (1);
-// 	while (x > 0)
-// 	{
-// 		count++;
-// 		x /= base;
-// 	}
-// 	return (count);
-// }
+int places_with_base_x(unsigned long long x, int base)
+{
+	int count = 0;
+	if (x == 0)
+		return (1);
+	while (x > 0)
+	{
+		count++;
+		x /= base;
+	}
+	return (count);
+}
 // char *convert_decimal_to_base_x(unsigned long long n, int num_places, int base, char c)
 // {
 // 	// int num_places = places_with_base_x(n, base);

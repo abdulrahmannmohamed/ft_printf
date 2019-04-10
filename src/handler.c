@@ -30,11 +30,16 @@ int handle_o(va_list list, t_block *block)
 	print_in_base_x_and_count_digits(num, 8, 'a', &places);
 	return (places);
 }
+
 int handle_d(va_list list, t_block *block)
 {
 	long long num = handle_signed_len(list, block);
 	int places = 0;
-	num = convert_to_unsigned(num, &places);
-	print_in_base_x_and_count_digits(num, 10, 'a', &places);
-	return (places);
+	num = convert_to_unsigned(num, block);
+	places = places_with_base_x(num, 10);
+	// printf("places = %d\n", places);
+	int count = 0;
+	handle_prec(block, places);
+	print_in_base_x_and_count_digits(num, 10, 'a', &count);
+	return (places + block->is_neg + (block->prec > places ? block->prec - places : places));
 }

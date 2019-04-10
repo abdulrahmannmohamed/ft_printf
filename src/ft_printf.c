@@ -39,13 +39,13 @@ int put_basic(const char **format)
 	*format += print_len;
 	return (print_len);
 }
-// #include <stdio.h>
 int ft_printf(const char *format, ...)
 {
 	t_block block;
 	va_list list;
 	int count = 0;
 
+	ft_bzero(&block, sizeof(block));
 	va_start(list, format);
 	while (*format)
 	{
@@ -53,12 +53,8 @@ int ft_printf(const char *format, ...)
 		{
 			format++;
 			parser(list, &format, &block);
-			// printf("%d", block.prec);
 			if (block.valid)
-			{
 				count += call_handler(list, &block);
-				format++;
-			}
 		}
 		else
 			count += put_basic(&format);
