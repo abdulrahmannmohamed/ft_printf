@@ -34,3 +34,38 @@ void parse_len(const char **format, t_block *block)
 			(*format) += 1;
 	}
 }
+int		ft_atoi_moving_string_address_past_nbr(const char **str)
+{
+	int		idx;
+	int		flag;
+	int		res;
+
+	res = 0;
+	idx = 0;
+	flag = 1;
+	while (((*str)[idx] >= 9 && (*str)[idx] <= 13) || (*str)[idx] == 32)
+		idx++;
+	if ((*str)[idx] == '+')
+		idx++;
+	else if ((*str)[idx] == '-')
+	{
+		flag = -1;
+		idx++;
+	}
+	while ((*str)[idx] >= '0' && (*str)[idx] <= '9')
+	{
+		res = res * 10 + ((*str)[idx] - '0');
+		idx++;
+	}
+	*str += idx;
+	return (res * flag);
+}
+void parse_precision(const char **format, t_block *block)
+{
+	if (**format == '.')
+	{
+		block->is_there_prec = 1;
+		(*format)++;
+		block->prec = ft_atoi_moving_string_address_past_nbr(format);
+	}
+}
