@@ -8,10 +8,10 @@
 #define H 2
 #define LL 3
 #define L 4
-// #define L 5
 
 typedef struct 	s_block
 {
+	int 	is_neg;
 	int		plus_flag;
 	int 	neg_flag;
 	int 	space_flag;
@@ -35,17 +35,20 @@ int handle_u(va_list list, t_block *block);
 int handle_x(va_list list, t_block *block);
 int handle_X(va_list list, t_block *block);
 
+int		ft_atoi_move_str_start_pos(const char **str);
+
 void parse_precision(const char **format, t_block *block);
 void parse_len(const char **format, t_block *block);
 void parse_specifier(va_list list, const char **format, t_block *block);
 
+void handle_prec(t_block *block, int *places);
 long long handle_signed_len(va_list list, t_block *block);
 long long handle_unsigned_len(va_list list, t_block *block);
 
-int convert_to_unsigned(int num, int *places);
+int convert_to_unsigned(int num, t_block *block);
 
 // char *convert_decimal_to_base_x(unsigned long long n, int places, int base, char c);
-// int places_with_base_x(unsigned long long x, int base);
+int places_with_base_x(unsigned long long x, int base);
 void print_in_base_x_and_count_digits(unsigned long long n, int base, char c, int* places);
 // void print_nbr_and_count_digits(long long n, int base, char c, int* places);
 #endif
