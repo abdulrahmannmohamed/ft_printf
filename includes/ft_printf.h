@@ -17,6 +17,8 @@ typedef struct 	s_block
 	int 	space_flag;
 	int 	hash_flag;
 	int 	zero_flag;
+	int 	is_there_prec;
+	int 	prec;
 	int 	len;
 	int		specifier;
 	int 		valid;
@@ -33,6 +35,7 @@ int handle_u(va_list list, t_block *block);
 int handle_x(va_list list, t_block *block);
 int handle_X(va_list list, t_block *block);
 
+void parse_precision(const char **format, t_block *block);
 void parse_len(const char **format, t_block *block);
 void parse_specifier(va_list list, const char **format, t_block *block);
 
