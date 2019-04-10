@@ -34,7 +34,7 @@ void parse_len(const char **format, t_block *block)
 			(*format) += 1;
 	}
 }
-int		ft_atoi_moving_string_address_past_nbr(const char **str)
+int		ft_atoi_move_str_start_pos(const char **str)
 {
 	int		idx;
 	int		flag;
@@ -66,6 +66,6 @@ void parse_precision(const char **format, t_block *block)
 	{
 		block->is_there_prec = 1;
 		(*format)++;
-		block->prec = ft_atoi_moving_string_address_past_nbr(format);
+		block->prec = ft_atoi_move_str_start_pos(format);
 	}
 }

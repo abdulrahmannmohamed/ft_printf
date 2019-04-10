@@ -4,7 +4,7 @@
 
 int call_handler(va_list list, t_block *block)
 {
-	int (*func[11])(va_list);
+	int (*func[11])(va_list, t_block*);
 
 	func[0] = handle_c;
 	func[1] = handle_s;
@@ -18,13 +18,13 @@ int call_handler(va_list list, t_block *block)
 	// func[9] = handle_f;
 	// func[10] = handle_%;
 
-	return (func[block->specifier](list));
+	return (func[block->specifier](list, block));
 }
 void parser(va_list list, const char **format, t_block *block)
 {
 	// parse_flag(format, block);
 	// parse_width(format, block);
-	// parse_precision(format, block);
+	parse_precision(format, block);
 	parse_len(format, block);
 	parse_specifier(list, format, block);
 }
@@ -53,6 +53,7 @@ int ft_printf(const char *format, ...)
 		{
 			format++;
 			parser(list, &format, &block);
+			// printf("%d", block.prec);
 			if (block.valid)
 			{
 				count += call_handler(list, &block);
