@@ -16,14 +16,14 @@ int call_handler(va_list list, t_block *block)
 	func[7] = handle_x;
 	func[8] = handle_X;
 	// func[9] = handle_f;
-	// func[10] = handle_%;
+	func[10] = handle_perc;
 
 	return (func[block->specifier](list, block));
 }
 void parser(va_list list, const char **format, t_block *block)
 {
-	// parse_flag(format, block);
-	// parse_width(format, block);
+	parse_flag(format, block);
+	parse_width(format, block);
 	parse_precision(format, block);
 	parse_len(format, block);
 	parse_specifier(list, format, block);

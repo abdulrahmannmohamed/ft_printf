@@ -44,3 +44,27 @@ void parse_precision(const char **format, t_block *block)
 		block->prec = ft_atoi_move_str_start_pos(format);
 	}
 }
+
+void parse_width(const char **format, t_block *block)
+{
+	block->width = ft_atoi_move_str_start_pos(format);
+}
+#include<stdio.h>
+void parse_flag(const char **format, t_block *block)
+{
+	while (ft_strchr("+-0# ", **format))
+	{
+		if (**format == '0')
+			block->zero_flag = 1;
+		else if (**format == '+')
+			block->plus_flag = 1;
+		else if (**format == '-')
+			block->neg_flag = 1;
+		else if (**format == '#')
+			block->hash_flag = 1;
+		else if (**format == ' ')
+			block->space_flag = 1;
+		(*format)++;
+	}
+	// printf("zer:%dplus:%dneg:%dhash:%dspace:%d", block->zero_flag, block->plus_flag, block->neg_flag, block->hash_flag, block->space_flag);
+}
