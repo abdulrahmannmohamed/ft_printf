@@ -1,6 +1,6 @@
 #include "ft_printf.h"
 
-int convert_to_unsigned(int num, t_block *block)
+long long convert_to_unsigned(long long num, t_block *block)
 {
 	if (num < 0)
 	{

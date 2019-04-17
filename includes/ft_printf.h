@@ -11,6 +11,7 @@
 
 typedef struct 	s_block
 {
+	// int 	dot?
 	int 	printed_sign_char;
 	int 	is_neg;
 	int		plus_flag;
@@ -53,7 +54,7 @@ void handle_prec(t_block *block, int *places);
 long long handle_signed_len(va_list list, t_block *block);
 long long handle_unsigned_len(va_list list, t_block *block);
 
-int convert_to_unsigned(int num, t_block *block);
+long long convert_to_unsigned(long long num, t_block *block);
 
 // char *convert_decimal_to_base_x(unsigned long long n, int places, int base, char c);
 int places_with_base_x(unsigned long long x, int base);

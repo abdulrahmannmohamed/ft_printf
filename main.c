@@ -8,9 +8,11 @@ int main(void)
 	// int c = a;
 	char *s = "hi";
 	int x,y;
-	// x = ft_printf("c = |%-15p|\n", a);
-	x = ft_printf("c = |%3s|\n", s);
+	x = ft_printf("|%5.d %5.0d|", 0, 0);
+	y = printf("|%5.d %5.0d|", 0, 0);
 	// ft_printf("b=%u", b);
-	y = printf("c = |%3s|\n", s);
+	// y = printf("c = |%.0o|\n", 5);
+	// x=ft_printf("%05%");
+	// y=printf("%05%");
 	printf("\nmyprintf = %d\nrealprintf = %d", x, y);
 }

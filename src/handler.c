@@ -21,6 +21,11 @@ int handle_c(va_list list, t_block *block)
 int handle_s(va_list list, t_block *block)
 {
 	char *s = va_arg(list, char*);
+	if (!s)
+	{
+		write (1, "(null)", 6);
+		return (6);
+	}
 	int places = 0;
 	if (block->prec)
 		places = (block->prec < (int)ft_strlen(s) ? block->prec : ft_strlen(s));
@@ -65,19 +70,23 @@ void handle_o_helper(t_block *block, int *places, int *num_of_zeros, int *num_of
 }
 int handle_o(va_list list, t_block *block)
 {
+	char c;
+	c = (block->zero_flag && !block->prec ? '0' : ' ');
 	int num_of_zeros = 0;
 	int num_of_spaces = 0;
 	unsigned long long num = handle_unsigned_len(list, block);
 	int places = places_with_base_x(num, 8);
+	places = (num == 0 && block->is_there_prec && block->prec == 0 ? 0 : places);
 	int count = 0;
 	handle_o_helper(block, &places, &num_of_zeros, &num_of_spaces);
 	while (!block->neg_flag && num_of_spaces--)
 		write(1, &c, 1);
 	while (num_of_zeros--)
 		write(1, "0", 1);
-	print_in_base_x_and_count_digits(num, 8, 'a', &count);
+	if (!(num == 0 && block->is_there_prec && block->prec == 0))
+		print_in_base_x_and_count_digits(num, 8, 'a', &count);
 	while (block->neg_flag && num_of_spaces--)
-		write(1, &c, 1);
+		write(1, " ", 1);
 	return (places);
 }
 void handle_d_helper(t_block *block, int *places, int *num_of_zeros, int *num_of_spaces)
@@ -85,7 +94,7 @@ void handle_d_helper(t_block *block, int *places, int *num_of_zeros, int *num_of
 	int is_there_printable_flag = 0;
 	is_there_printable_flag = block->is_neg + block->plus_flag + block->space_flag;
 	*places = is_there_printable_flag ? *places + 1 : *places;
-	*num_of_zeros = block->prec - (*places - is_there_printable_flag);
+	*num_of_zeros = ((block->zero_flag && !block->is_there_prec && !block->neg_flag) ? block->width : block->prec) - (*places) + (block->prec ? is_there_printable_flag : 0);
 	*num_of_zeros = *num_of_zeros <= 0 ? 0 : *num_of_zeros;
 	*num_of_spaces = block->width - (*places + *num_of_zeros);
 	*num_of_spaces = *num_of_spaces <= 0 ? 0 : *num_of_spaces;
@@ -100,6 +109,7 @@ int handle_d(va_list list, t_block *block)
 
 	num = convert_to_unsigned(num, block);
 	places = places_with_base_x(num, 10);
+	places = (num == 0 && block->is_there_prec && block->prec == 0 ? 0 : places);
 	flag_manager(block);
 	handle_d_helper(block, &places, &num_of_zeros, &num_of_spaces);
 	while (!block->neg_flag && num_of_spaces--)
@@ -108,7 +118,8 @@ int handle_d(va_list list, t_block *block)
 	int count = 0;
 	while (num_of_zeros--)
 		write(1, "0", 1);
-	print_in_base_x_and_count_digits(num, 10, 'a', &count);
+	if (!(num == 0 && block->is_there_prec && block->prec == 0))
+		print_in_base_x_and_count_digits(num, 10, 'a', &count);
 	while (block->neg_flag && num_of_spaces--)
 		write(1, " ", 1);
 	return (places);

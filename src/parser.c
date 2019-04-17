@@ -66,5 +66,4 @@ void parse_flag(const char **format, t_block *block)
 			block->space_flag = 1;
 		(*format)++;
 	}
-	// printf("zer:%dplus:%dneg:%dhash:%dspace:%d", block->zero_flag, block->plus_flag, block->neg_flag, block->hash_flag, block->space_flag);
 }

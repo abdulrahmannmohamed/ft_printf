@@ -55,6 +55,7 @@ int ft_printf(const char *format, ...)
 			parser(list, &format, &block);
 			if (block.valid)
 				count += call_handler(list, &block);
+			ft_bzero(&block, sizeof(block));
 		}
 		else
 			count += put_basic(&format);
