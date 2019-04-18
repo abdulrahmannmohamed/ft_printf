@@ -1,6 +1,4 @@
-
 #include "ft_printf.h"
-
 
 int call_handler(va_list list, t_block *block)
 {
@@ -31,9 +29,10 @@ void parser(va_list list, const char **format, t_block *block)
 int put_basic(const char **format)
 {
 	int	print_len;
+	char *x;
 
 	print_len = 0;
-	char *x = ft_strchr(*format, '%');
+	x = ft_strchr(*format, '%');
 	print_len = x ? x - *format : ft_strlen(*format);
 	write(1, *format, print_len);
 	*format += print_len;
@@ -43,8 +42,9 @@ int ft_printf(const char *format, ...)
 {
 	t_block block;
 	va_list list;
-	int count = 0;
+	int count;
 
+	count = 0;
 	ft_bzero(&block, sizeof(block));
 	va_start(list, format);
 	while (*format)

@@ -12,8 +12,6 @@ void parse_specifier(va_list list, const char **format, t_block *block)
 		(*format)++;
 	}
 	(void)(list);
-	// if (block->valid)
-	// 	call_handler(list, block);
 }
 
 void parse_len(const char **format, t_block *block)
@@ -37,19 +35,42 @@ void parse_len(const char **format, t_block *block)
 
 void parse_precision(const char **format, t_block *block)
 {
+	int		idx;
+	int		res;
+
+	res = 0;
+	idx = 0;
+
 	if (**format == '.')
 	{
 		block->is_there_prec = 1;
 		(*format)++;
-		block->prec = ft_atoi_move_str_start_pos(format);
+		while ((*format)[idx] >= '0' && (*format)[idx] <= '9')
+		{
+			res = res * 10 + ((*format)[idx] - '0');
+			idx++;
+		}
+		*format += idx;
+		block->prec = res;
 	}
 }
 
 void parse_width(const char **format, t_block *block)
 {
-	block->width = ft_atoi_move_str_start_pos(format);
+	int		idx;
+	int		res;
+
+	res = 0;
+	idx = 0;
+	while ((*format)[idx] >= '0' && (*format)[idx] <= '9')
+	{
+		res = res * 10 + ((*format)[idx] - '0');
+		idx++;
+	}
+	*format += idx;
+	block->width = res;
 }
-#include<stdio.h>
+
 void parse_flag(const char **format, t_block *block)
 {
 	while (ft_strchr("+-0# ", **format))
