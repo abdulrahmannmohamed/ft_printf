@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amohamed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/22 23:23:43 by amohamed          #+#    #+#             */
+/*   Updated: 2019/04/22 23:23:46 by amohamed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int call_handler(va_list list, t_block *block)
+int		call_handler(va_list list, t_block *block)
 {
-	int (*func[11])(va_list, t_block*);
+	int	(*func[11])(va_list, t_block*);
 
 	func[0] = handle_c;
 	func[1] = handle_s;
@@ -12,13 +24,13 @@ int call_handler(va_list list, t_block *block)
 	func[5] = handle_o;
 	func[6] = handle_u;
 	func[7] = handle_x;
-	func[8] = handle_X;
+	func[8] = handle_x;
 	// func[9] = handle_f;
 	func[10] = handle_perc;
-
 	return (func[block->specifier](list, block));
 }
-void parser(va_list list, const char **format, t_block *block)
+
+void	parser(va_list list, const char **format, t_block *block)
 {
 	parse_flag(format, block);
 	parse_width(format, block);
@@ -26,10 +38,11 @@ void parser(va_list list, const char **format, t_block *block)
 	parse_len(format, block);
 	parse_specifier(list, format, block);
 }
-int put_basic(const char **format)
+
+int		put_basic(const char **format)
 {
-	int	print_len;
-	char *x;
+	int		print_len;
+	char	*x;
 
 	print_len = 0;
 	x = ft_strchr(*format, '%');
@@ -38,11 +51,12 @@ int put_basic(const char **format)
 	*format += print_len;
 	return (print_len);
 }
-int ft_printf(const char *format, ...)
+
+int		ft_printf(const char *format, ...)
 {
-	t_block block;
-	va_list list;
-	int count;
+	t_block	block;
+	va_list	list;
+	int		count;
 
 	count = 0;
 	ft_bzero(&block, sizeof(block));

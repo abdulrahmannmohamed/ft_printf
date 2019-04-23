@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: amohamed <marvin@42.fr>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2019/04/22 23:22:11 by amohamed          #+#    #+#              #
+#    Updated: 2019/04/22 23:22:13 by amohamed         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = libftprintf.a
 FLAGS = -Wall -Werror -Wextra
 SRC := ft_printf.c print_and_count_in_base_x.c handler.c parser.c handler_cont.c handler_assist.c\

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amohamed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/22 23:23:43 by amohamed          #+#    #+#             */
+/*   Updated: 2019/04/22 23:23:46 by amohamed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-long long convert_to_unsigned(long long num, t_block *block)
+long long	convert_to_unsigned(long long num, t_block *block)
 {
 	if (num < 0)
 	{
@@ -9,9 +21,11 @@ long long convert_to_unsigned(long long num, t_block *block)
 	}
 	return (num);
 }
-long long handle_signed_len(va_list list, t_block *block)
+
+long long	handle_signed_len(va_list list, t_block *block)
 {
-	long long n;
+	long long	n;
+
 	if (block->len == HH)
 		n = (signed char)va_arg(list, int);
 	else if (block->len == H)
@@ -24,9 +38,11 @@ long long handle_signed_len(va_list list, t_block *block)
 		n = va_arg(list, int);
 	return (n);
 }
-long long handle_unsigned_len(va_list list, t_block *block)
+
+long long	handle_unsigned_len(va_list list, t_block *block)
 {
-	long long n;
+	long long	n;
+
 	if (block->len == HH)
 		n = (unsigned char)va_arg(list, int);
 	else if (block->len == H)
@@ -39,7 +55,8 @@ long long handle_unsigned_len(va_list list, t_block *block)
 		n = va_arg(list, unsigned int);
 	return (n);
 }
-void flag_manager(t_block *block)
+
+void		flag_manager(t_block *block)
 {
 	if (block->is_neg)
 	{
@@ -49,9 +66,12 @@ void flag_manager(t_block *block)
 	else if (block->plus_flag)
 		block->space_flag = 0;
 }
-char *set_sign(t_block *block)
+
+char		*set_sign(t_block *block)
 {
-	char *sign = NULL;
+	char	*sign;
+
+	sign = NULL;
 	if (block->is_neg)
 		sign = "-";
 	else if (block->plus_flag)

@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amohamed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/22 23:23:43 by amohamed          #+#    #+#             */
+/*   Updated: 2019/04/22 23:23:46 by amohamed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
-int places_with_base_x(unsigned long long x, int base)
+int		places_with_base_x(unsigned long long x, int base)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (x == 0)
@@ -15,7 +27,7 @@ int places_with_base_x(unsigned long long x, int base)
 	return (count);
 }
 
-void print_in_base_x(unsigned long long n, int base, char c)
+void	print_in_base_x(unsigned long long n, int base, char c)
 {
 	if (n >= (unsigned long long)base)
 	{

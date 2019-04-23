@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: amohamed <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/04/22 23:23:43 by amohamed          #+#    #+#             */
+/*   Updated: 2019/04/22 23:23:46 by amohamed         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
-void parse_specifier(va_list list, const char **format, t_block *block)
+
+void	parse_specifier(va_list list, const char **format, t_block *block)
 {
-	const char *key = "cspdiouxXf%";
-	char *pointer_to_spec;
+	const char	*key = "cspdiouxXq%";
+	char		*pointer_to_spec;
 
 	pointer_to_spec = ft_strchr(key, **format);
 	if (pointer_to_spec)
@@ -14,7 +27,7 @@ void parse_specifier(va_list list, const char **format, t_block *block)
 	(void)(list);
 }
 
-void parse_len(const char **format, t_block *block)
+void	parse_len(const char **format, t_block *block)
 {
 	if (ft_strnstr(*format, "hh", 2))
 		block->len = HH;
@@ -33,14 +46,13 @@ void parse_len(const char **format, t_block *block)
 	}
 }
 
-void parse_precision(const char **format, t_block *block)
+void	parse_precision(const char **format, t_block *block)
 {
 	int		idx;
 	int		res;
 
 	res = 0;
 	idx = 0;
-
 	if (**format == '.')
 	{
 		block->is_there_prec = 1;
@@ -55,7 +67,7 @@ void parse_precision(const char **format, t_block *block)
 	}
 }
 
-void parse_width(const char **format, t_block *block)
+void	parse_width(const char **format, t_block *block)
 {
 	int		idx;
 	int		res;
@@ -71,7 +83,7 @@ void parse_width(const char **format, t_block *block)
 	block->width = res;
 }
 
-void parse_flag(const char **format, t_block *block)
+void	parse_flag(const char **format, t_block *block)
 {
 	while (ft_strchr("+-0# ", **format))
 	{
